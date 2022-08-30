@@ -23,4 +23,3 @@ with open(filename, 'w') as csvfile:
 	csvwriter = csv.writer(csvfile)
 	csvwriter.writerow(columns)
 	csvwriter.writerows(rows)
-	
