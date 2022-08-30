@@ -1,22 +1,26 @@
-import pyodbc 
+#Importing libraries
+import pyodbc
+import csv
 
-server = 'localhost\SCHWARZ'
-database = 'Courses' 
-username = 'Laptop\SCHWARZ'
-password = '' 
-conn = pyodbc.connect('DSN=trey;Trusted_Connection=yes;')
+#Connecting to Database
+filename = "filename.csv"
+server = 'servername'
+database = 'database_name'
+username = 'username'
+password = 'password'
+conn = pyodbc.connect('DSN=dsn;Trusted_Connection=yes;')
 cursor = conn.cursor()
-cursor.execute("SELECT name FROM sys.columns WHERE object_id = OBJECT_ID('dbo.Classes')")
+
+#SQL Queries retrieving Information from the Database
+cursor.execute("SELECT name FROM sys.columns WHERE object_id = OBJECT_ID('dbo.tablename')")
 columns = cursor.fetchall()
-cursor.execute("SELECT * FROM Classes WHERE course_id<10")
+cursor.execute("SELECT * FROM TableName")
 rows = cursor.fetchall()
 
-
-for column in columns:
-    print(column)
-
-for row in rows:
-    print(row)
-
-
-
+#Writing to CSV File
+with open(filename, 'w') as csvfile:
+	
+	csvwriter = csv.writer(csvfile)
+	csvwriter.writerow(columns)
+	csvwriter.writerows(rows)
+	
