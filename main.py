@@ -2,7 +2,7 @@
 import pyodbc
 import csv
 
-#Connecting to Database
+#Connecting to Database, these are placeholder names and are changed for the actual database connection
 filename = "filename.csv"
 server = 'servername'
 database = 'database_name'
@@ -18,7 +18,7 @@ cursor.execute("SELECT * FROM TableName")
 rows = cursor.fetchall()
 
 #Writing to CSV File
-with open(filename, 'w') as csvfile:
+with open(filename, 'w', newline='') as csvfile:
 	
 	csvwriter = csv.writer(csvfile)
 	csvwriter.writerow(columns)
